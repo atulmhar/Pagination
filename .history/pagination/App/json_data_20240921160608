@@ -1,0 +1,25 @@
+import json
+from faker import Faker
+
+# Initialize Faker and create a list to hold the data
+fake = Faker()
+data = []
+
+# Generate 100 fake records
+for _ in range(100):
+    record = {
+        "first_name": fake.first_name(),
+        "last_name": fake.last_name(),
+        "email": fake.email(),
+        "phone_number": fake.phone_number(),
+        "position": fake.job(),
+        "department": fake.word(),
+        "hire_date": fake.date_this_decade().isoformat(),
+        "salary": fake.random_number(digits=5),
+        "address": fake.address()
+    }
+    data.append(record)
+
+# Save the data to a JSON file
+with open("employee_data.json", "w") as file:
+    json.dump(data, file, indent=4)
